@@ -1,18 +1,19 @@
 var express = require('express');
 var mongo = require('mongodb');
 var bodyParser = require('body-parser');
+var path = require('path');
 var api = require('./routes/search.js');
 var dotenv = require('dotenv');
 var app = express();
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, './public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 dotenv.config();
 
-var urlDB = process.env.MONGOLAB_RED_URI || 'mongodb://localhost:27017/data';
+var urlDB = process.env.MONGODB_URI || 'mongodb://localhost:27017/data';
 var dbName = "data";
 //connect to db
 mongo.MongoClient.connect(urlDB, function (err, client) {
