@@ -17,7 +17,6 @@ module.exports = function(app, db) {
     db.collection("data").insert(queryObj, function(err, data) {
         if (err) {console.log("Insert db err: " + err);}
     });
-    console.log('You sent the search "' + queryString + '" looking for ' + numResults + ' results.');
     url = 'https://www.googleapis.com/customsearch/v1' + '?key=' + process.env.GOOGLE_KEY + '&cx=' + process.env.GOOGLE_CE + '&searchType=image' + '&q=' + queryString + '&start=' + numResults;
     var requestObject = {
       uri: url,
@@ -36,7 +35,6 @@ module.exports = function(app, db) {
         var result = JSON.parse(body);
         //only use the items of the body, that is an array of search results objects
         var imageList = result.items;
-        console.log(imageList);
         for (var i = 0; i < imageList.length; i++) {
           var image = {
             "url": imageList[i].link,
@@ -54,8 +52,6 @@ module.exports = function(app, db) {
   app.post('/recent', function(req, res) {
     let recentDate = null;
     var docs = db.collection("data").find().toArray(function(err, docs) {
-      console.log("Found the following records");
-      console.log(docs);
       if (Object.keys(docs).length > 0) {
         if (Object.keys(docs).length > 10) {
           var arrLen = Object.keys(docs).length;
