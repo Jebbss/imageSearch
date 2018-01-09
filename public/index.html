@@ -1,0 +1,28 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="style.css">
+</head>
+<div class="center">
+  <div class="searchForm">
+    <h3>Image search</h3>
+    <form action="/search" method="post">
+      <div class="searchField">
+        <input type="text" name="query" placeholder="Keywords" />
+        <input class="searchButton" type="submit" value="Search" />
+      </div>
+      <div>
+        # results
+        <input type="number" min="0" max="100" name="numResults" value=10 placeholder="10" />
+      </div>
+    </form>
+    <form action="/recent" method="post">
+      <input class="recentButton" type="submit" value="recent" />
+    </form>
+  </div>
+</div>
+<div class="results">
+
+</div>
+
+</html>
