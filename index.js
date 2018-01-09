@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({
 dotenv.config();
 
 var urlDB = process.env.MONGODB_URI || 'mongodb://localhost:27017/data';
-var dbName = "data";
+var dbName = "heroku_ncwrqwnt";
 
 // app.get('/', function(req, res) {
 //   res.sendFile(path.join(__dirname, './public/index.html'));
