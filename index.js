@@ -15,6 +15,11 @@ dotenv.config();
 
 var urlDB = process.env.MONGODB_URI || 'mongodb://localhost:27017/data';
 var dbName = "data";
+
+app.get('/', function(req, res) {
+  res.sendfile(path.join(__dirname, './public/index.html'));
+});
+
 //connect to db
 mongo.MongoClient.connect(urlDB, function (err, client) {
   if (err) {
