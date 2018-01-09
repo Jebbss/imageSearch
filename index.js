@@ -6,7 +6,7 @@ var api = require('./routes/search.js');
 var dotenv = require('dotenv');
 var app = express();
 
-app.use(express.static(path.join(__dirname, './public')));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
@@ -16,9 +16,9 @@ dotenv.config();
 var urlDB = process.env.MONGODB_URI || 'mongodb://localhost:27017/data';
 var dbName = "data";
 
-app.get('/', function(req, res) {
-  res.sendfile(path.join(__dirname, './public/index.html'));
-});
+// app.get('/', function(req, res) {
+//   res.sendFile(path.join(__dirname, './public/index.html'));
+// });
 
 //connect to db
 mongo.MongoClient.connect(urlDB, function (err, client) {
